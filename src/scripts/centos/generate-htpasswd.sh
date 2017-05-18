@@ -3,6 +3,8 @@
 FILE=${FILE}
 CREDENTIALS=${CREDENTIALS}
 
+yum install -y httpd-tools
+
 # Create and/or clear file
 touch $FILE
 truncate -s 0 $FILE
