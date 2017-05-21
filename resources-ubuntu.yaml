@@ -4,3 +4,4 @@ resource_registry:
   "Evoila::Deployment::PrepareVolume": src/deploy-prepare-volume.yaml
   "Evoila::Deployment::GenerateHtpasswd": src/deploy-generate-htpasswd-ubuntu.yaml
   "Evoila::Deployment::Java": src/deploy-java-ubuntu.yaml
+  "Evoila::Deployment::ActivateNICs": src/deploy-activate-nics.yaml
