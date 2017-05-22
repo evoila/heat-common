@@ -1,14 +1,24 @@
 #!/bin/bash
 
-TARGET_DIRECTORY=${TARGET_DIRECTORY}
-TARGET_FILENAME=${TARGET_FILENAME}
+BASE_DIR=${BASE_DIR}
+FILENAME=${FILENAME}
+
+OWNER=${OWNER:-root}
+GROUP=${GROUP:-root}
+PERMS=${PERMS:-664}
+
 CONTENT=${CONTENT}
 
-# Remove trailing slash if any
-TARGET_DIRECTORY=$(echo $TARGET_DIRECTORY | sed 's/\/$//')
+# Create base directory if not exists and set ownership and permissions
+if [ ! -d $BASE_DIR ]; then
+  mkdir -p $BASE_DIR
+fi
+chown $OWNER:$GROUP $BASE_DIR
+chmod $PERMS $BASE_DIR
 
-# Create directory and write file
-mkdir -p $TARGET_DIRECTORY
-cat <<EOF > $TARGET_DIRECTORY/$TARGET_FILENAME
+# Write file and set owner and permissions
+cat <<EOF > $BASE_DIR/$FILENAME
 $CONTENT
 EOF
+chown $OWNER:$GROUP ${BASE_DIR}/${FILENAME}
+chmod $PERMS $BASE_DIR/$FILENAME

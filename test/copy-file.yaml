@@ -92,8 +92,11 @@ resources:
     type: Evoila::Deployment::CopyFile
     properties:
       server_map: { get_attr: [ cluster, attributes_id ] }
-      directory: /tmp
+      base_dir: /tmp
       filename: foo
+      owner: root
+      group: root
+      perms: 777
       content: bar
 
 outputs:
