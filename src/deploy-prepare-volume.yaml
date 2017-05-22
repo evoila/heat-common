@@ -34,5 +34,6 @@ resources:
     properties:
       config: { get_resource: prepare_volume }
       servers: { get_param: server_map }
+      signal_transport: HEAT_SIGNAL
 
 outputs:

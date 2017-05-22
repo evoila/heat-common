@@ -49,6 +49,7 @@ resources:
     properties:
       config: { get_resource: write_hosts_file }
       servers: { get_param: server_map }
+      signal_transport: HEAT_SIGNAL
       input_values:
         hostnames: { get_param: server_names }
         addresses: { get_param: server_addresses }
