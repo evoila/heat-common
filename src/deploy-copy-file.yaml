@@ -33,7 +33,10 @@ parameters:
   group:
     type: string
 
-  perms:
+  file_perms:
+    type: string
+
+  dir_perms:
     type: string
 
   content:
@@ -68,7 +71,8 @@ resources:
         FILENAME: { get_param: filename }
         OWNER: { get_param: owner }
         GROUP: { get_param: group }
-        PERMS: { get_param: perms }
+        DIR_PERMS: { get_param: dir_perms }
+        FILE_PERMS: { get_param: file_perms }
         CONTENT: { get_param: content }
 
 outputs:
