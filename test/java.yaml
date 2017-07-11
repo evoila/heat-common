@@ -95,4 +95,27 @@ resources:
     properties:
       server_map: { get_attr: [ cluster, attributes_id ] }
 
+  keystore_cert:
+    type: Evoila::Deployment::Java::Keystore::Add
+    properties:
+      server_map: { get_attr: [ cluster, attributes_id ] }
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIICsDCCAhmgAwIBAgIJAKwJnF3Fn1PnMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
+        BAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX
+        aWRnaXRzIFB0eSBMdGQwHhcNMTcwNzEwMTkyNzQwWhcNMjcwNzA4MTkyNzQwWjBF
+        MQswCQYDVQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50
+        ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
+        gQCfSwmwCzTk0ltgRfDO+ypdbw3wUJUqitmSMWdwTEsvnmxr+HBiuY7qpfLP82oG
+        JEsm63eenmXhAizII8uuex+GefDPlE9oqVpPZLEZvDOLSIfQdJ8KD8tb+nEcQe8H
+        mq/sBB1SAgpfHy2Ab2W1dqqEu/oKewfwzEXFmU/XqWZReQIDAQABo4GnMIGkMB0G
+        A1UdDgQWBBSAg5BSG6m7oN3Jk8yuslYx+2IE0TB1BgNVHSMEbjBsgBSAg5BSG6m7
+        oN3Jk8yuslYx+2IE0aFJpEcwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgTClNvbWUt
+        U3RhdGUxITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZIIJAKwJnF3F
+        n1PnMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAiTIw/T/QOkOv3fY5
+        EhWWisUoiT0Tf54Bi5cRCnNGnOWq3Im+CTWmy5XQ2dXEBFMlVpcc3ODDs1xoUgCm
+        xC8naSzQLxktpIaBJ6huRK2CIpZPAcj1Tzo3koEvv4K/YaOWaeNlkBHuX6Zszh5D
+        ruqs9qXG7jX65U630LEivGtLSTU=
+        -----END CERTIFICATE-----
+
 outputs:
