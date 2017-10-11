@@ -21,6 +21,31 @@ parameters:
     description: "Exceptions to proxy configuration"
     default: ''
 
+  device:
+    type: string
+    description: "The name of the block device"
+    default: "vdb"
+
+  mountpoint:
+    type: string
+    description: "The directory to mount the filesystem to."
+    default: "/mnt"
+
+  filesystem_type:
+    type: string
+    description: "The name of the filesystem to create on the disk"
+    default: "ext4"
+
+  filesystem_label:
+    type: string
+    description: "The label to set on the new filesystem"
+    default: "volume"
+
+  filesystem_options:
+    type: string
+    description: "Options to pass to mkfs"
+    default: ""
+
 resources:
 
   prepare_volume:
@@ -28,6 +53,12 @@ resources:
     properties:
       group: script
       config: { get_file: scripts/prepare-volume.sh }
+      inputs:
+        - name: DEVICE
+        - name: MOUNTPOINT
+        - name: FILESYSTEM_TYPE
+        - name: FILESYSTEM_LABEL
+        - name: FILESYSTEM_OPTIONS
 
   deploy_prepare_volume:
     type: OS::Heat::SoftwareDeploymentGroup
@@ -35,5 +66,11 @@ resources:
       config: { get_resource: prepare_volume }
       servers: { get_param: server_map }
       signal_transport: HEAT_SIGNAL
+      input_values:
+        DEVICE: { get_param: device }
+        MOUNTPOINT: { get_param: mountpoint }
+        FILESYSTEM_TYPE: { get_param: filesystem_type }
+        FILESYSTEM_LABEL: { get_param: filesystem_label }
+        FILESYSTEM_OPTIONS: { get_param: filesystem_options }
 
 outputs:
