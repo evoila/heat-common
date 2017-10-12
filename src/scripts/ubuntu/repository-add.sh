@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash -xe
 
 export REPOSITORY_ENTRY=${REPOSITORY_ENTRY}
 export REPOSITORY_PUBLICKEY=${REPOSITORY_PUBLICKEY}}
