@@ -6,3 +6,4 @@ resource_registry:
   "Evoila::Deployment::Java": src/deploy-java-centos.yaml
   "Evoila::Config::OsCollectConfig": src/config-os-collect-config-centos.yaml
   "Evoila::Deployment::Java::Keystore::Add": src/deploy-keystore-add-centos.yaml
+  "Evoila::Deployment::Repository": src/deploy-repository-centos.yaml

@@ -6,3 +6,4 @@ resource_registry:
   "Evoila::Deployment::Java": src/deploy-java-ubuntu.yaml
   "Evoila::Deployment::ActivateNICs": src/deploy-activate-nics.yaml
   "Evoila::Deployment::Java::Keystore::Add": src/deploy-keystore-add-ubuntu.yaml
+  "Evoila::Deployment::Repository": src/deploy-repository-ubuntu.yaml

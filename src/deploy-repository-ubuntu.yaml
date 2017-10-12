@@ -1,0 +1,67 @@
+heat_template_version: 2015-04-30
+
+parameters:
+
+  server_map:
+    type: json
+    description: Map of servers to be used with OS::Heat::SoftwareDeploymentGroup
+
+  http_proxy:
+    type: string
+    description: "HTTP proxy URL"
+    default: ''
+
+  https_proxy:
+    type: string
+    description: "HTTPS proxy URL"
+    default: ''
+
+  no_proxy:
+    type: string
+    description: "Exceptions to proxy configuration"
+    default: ''
+
+  repository_entry:
+    type: string
+    description: “repository entry to be added”
+
+  repository_publickey:
+    type: string
+    description: "Apt-Key for given repository"
+
+  repository_name:
+    type: string
+    description: “Repository Name”
+    constraints:
+      - allowed_pattern: "[a-zA-Z0-9]+[a-zA-Z0-9-_]*[a-zA-Z0-9]+"
+
+resources:
+
+  repository_add:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config: { get_file: scripts/ubuntu/repository-add.sh }
+      inputs:
+        - name: http_proxy
+        - name: https_proxy
+        - name: no_proxy
+        - name: REPOSITORY_ENTRY
+        - name: REPOSITORY_PUBLICKEY
+        - name: REPOSITORY_NAME
+
+  deploy_repository_add:
+    type: OS::Heat::SoftwareDeploymentGroup
+    properties:
+      config: { get_resource: repository_add }
+      servers: { get_param: server_map }
+      signal_transport: HEAT_SIGNAL
+      input_values:
+        http_proxy: { get_param: http_proxy }
+        https_proxy: { get_param: https_proxy }
+        no_proxy: { get_param: no_proxy }
+        REPOSITORY_ENTRY: { get_param: repository_entry }
+        REPOSITORY_PUBLICKEY: { get_param: repository_publickey }
+        REPOSITORY_NAME: { get_param: repository_name }
+
+outputs:
