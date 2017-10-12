@@ -27,11 +27,11 @@ parameters:
 
   repository_publickey:
     type: string
-    description: "Apt-Key for given repository"
+    description: "public key for given repository"
 
   repository_name:
     type: string
-    description: “Repository Name”
+    description: "Repository Name"
     constraints:
       - allowed_pattern: "[a-zA-Z0-9]+[a-zA-Z0-9-_]*[a-zA-Z0-9]+"
 

@@ -37,7 +37,7 @@ parameters:
 
   repository_publickey:
     type: string
-    description: "public key for repository"
+    description: "public key for repository, unfortunately this needs to be set under resources"
 
   repository_name:
     type: string
@@ -89,7 +89,9 @@ resources:
     properties:
       server_map: { get_attr: [ cluster, attributes_id ] }
       repository_entry: { get_param: repository_entry }
-      repository_publickey: { get_file: centos_repo_key.pub }
+# unfortunately get_param inside of get_file doesn't work
+#      repository_publickey: { get_file: { get_param: repository_publickey } }
+      repository_publickey: { get_file : centos_repo_key.pub }
       repository_name: { get_param: repository_name }
 
 outputs:
