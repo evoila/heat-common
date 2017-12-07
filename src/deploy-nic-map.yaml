@@ -1,0 +1,30 @@
+heat_template_version: 2015-04-30
+
+parameters:
+
+  server:
+    type: string
+    description: Map of servers to be used with OS::Heat::SoftwareDeploymentGroup
+
+resources:
+
+  nic_map:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config: { get_file: scripts/nic_map.py }
+      outputs:
+        - name: map
+          type: Json
+
+  deploy_nic_map:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config: { get_resource: nic_map }
+      server: { get_param: server }
+      signal_transport: HEAT_SIGNAL
+
+outputs:
+
+  map:
+    value: { get_attr: [ deploy_nic_map, map ] }
