@@ -6,7 +6,7 @@ addresses = eval(os.environ['addresses'])
 
 def write_hosts(hostnames, addresses, file):
   f.write('DO NOT EDIT! THIS FILE IS MANAGED VIA HEAT\n\n')
-  f.write('127.0.0.1 localhost\n\n')
+  f.write('127.0.0.1 localhost ' + os.uname()[1] + '\n\n')
 
   for idx, hostname in enumerate(hostnames):
     f.write(addresses[idx] + ' ' + hostname + '\n')
